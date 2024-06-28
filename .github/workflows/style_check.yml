@@ -1,6 +1,9 @@
 name: Check style
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
 
 jobs:
   lint:
