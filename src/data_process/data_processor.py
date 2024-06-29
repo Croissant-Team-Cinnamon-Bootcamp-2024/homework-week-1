@@ -1,5 +1,4 @@
-import numpy as np
-
+from .data_model.input_image import OcrImages
 from .input_handler.image_handler import (
     HeicFileHandler,
     PngFileHandler,
@@ -15,7 +14,7 @@ class ImageFileHandler(object):
             TiffFileHandler(),
         ]
 
-    def process_image(self, filepath: str) -> np.array:
+    def process_image(self, filepath: str) -> OcrImages:
         image = None
         try:
             for handler in self.list_handlers:
