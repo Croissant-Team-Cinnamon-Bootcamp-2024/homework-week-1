@@ -1,4 +1,5 @@
 numpy
-Pillow
 pytesseract
 opencv-python
+pillow
+pillow-heif
