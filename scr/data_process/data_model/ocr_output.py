@@ -6,8 +6,11 @@ from PIL import Image
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from io import BytesIO
+import os
 
-FILE_PATH = 'output'
+FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))), 'results')
+if not os.path.exists(FILE_PATH):
+    os.makedirs(FILE_PATH)
 
 @dataclass
 class OcrResults:
@@ -17,13 +20,17 @@ class OcrResults:
 class JsonProcessor():
     def process(input:OcrResults)->None:
         import json
-        with open(FILE_PATH+'/'+'detect_result'+'.json','w') as f:
-            json.dump(OcrResults.ocr_outputs,f, indent=4)
+        output_file = os.path.join(FILE_PATH, 'detect_result.json')
+        with open(output_file, 'w') as f:
+            json.dump(input.ocr_outputs, f, indent=4)
+from reportlab.lib.utils import ImageReader
 
-class ImageProcessor():
-    def create_pdf_from_numpy_images(input:OcrResults, output_filename = 'detect_images.pdf', img_width=6*inch):
+class OutputImageProcessor:
+    @staticmethod
+    def create_pdf_from_numpy_images(input: OcrResults, output_filename='detect_images.pdf', img_width=6*inch):
         image_list = input.images
-        c = canvas.Canvas(output_filename)
+        output_file = os.path.join(FILE_PATH, output_filename)
+        c = canvas.Canvas(output_file)
         
         for i, img_array in enumerate(image_list):
             # Convert numpy array to PIL Image
@@ -36,19 +43,16 @@ class ImageProcessor():
             # Convert PIL Image to bytes
             img_byte_arr = BytesIO()
             img.save(img_byte_arr, format='PNG')
-            img_byte_arr = img_byte_arr.getvalue()
+            img_byte_arr.seek(0)  # Reset the buffer position
+            
+            # Use ImageReader to handle BytesIO
+            img_reader = ImageReader(img_byte_arr)
             
             # Add image to the PDF
-            c.drawImage(BytesIO(img_byte_arr), x=inch, y=c._pagesize[1]-img_height-inch, width=img_width, height=img_height)
+            c.drawImage(img_reader, x=inch, y=c._pagesize[1]-img_height-inch, width=img_width, height=img_height)
             
             # Add a new page for the next image (except for the last one)
             if i < len(image_list) - 1:
                 c.showPage()
         
         c.save()
-
-    # Example usage:
-    # Assuming you have a list of numpy arrays called 'image_list'
-    # image_list = [np.array(...), np.array(...), ...]
-
-# create_pdf_from_numpy_images(image_list, 'output.pdf')
