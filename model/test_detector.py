@@ -1,7 +1,9 @@
+import numpy as np
 import pytest
 from PIL import Image
-import numpy as np
+
 from .detector import TextDetector
+
 
 @pytest.fixture
 def sample_image():
@@ -9,17 +11,20 @@ def sample_image():
     img = Image.new('RGB', (1000, 1000), color=(73, 109, 137))
     return img
 
+
 def test_resize_image(sample_image):
     detector = TextDetector()
     resized_img, scaling_factor = detector.resize_image(sample_image)
     assert isinstance(resized_img, Image.Image)
     assert isinstance(scaling_factor, float)
 
+
 def test_preprocess_image(sample_image):
     detector = TextDetector()
     preprocessed_image, scaling_factor = detector.preprocess_image(sample_image)
     assert isinstance(preprocessed_image, np.ndarray)
     assert isinstance(scaling_factor, float)
+
 
 if __name__ == "__main__":
     pytest.main()
