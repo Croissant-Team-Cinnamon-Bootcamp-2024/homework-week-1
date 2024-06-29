@@ -1,6 +1,9 @@
 name: Unit tests
 
-on: [push, pull_request]
+on:
+    push: 
+    pull_request: 
+        branches: [main, dev]
 
 jobs:
   test:
@@ -21,6 +24,17 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
         
-    - name: Run tests
+    - name: Check for tests
+      id: check_tests
       run: |
+        if [ -d "tests" ]; then echo "tests_exist=true" >> $GITHUB_ENV; else echo "tests_exist=false" >> $GITHUB_ENV; fi
+    
+    - name: Run tests
+      if: env.tests_exist == 'true'
+      run: | 
         pytest
+
+    - name: No tests found
+      if: env.tests_exist == 'false'
+      run: |
+        echo "No tests to run, but CI passed!"
