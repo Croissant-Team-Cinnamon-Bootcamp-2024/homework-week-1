@@ -9,13 +9,13 @@ from ocr_app.model.detector import TextDetector
 def sample_image():
     # Provide a sample image for testing
     img = Image.new('RGB', (1000, 1000), color=(73, 109, 137))
-    return img
+    return np.array(img)
 
 
 def test_resize_image(sample_image):
     detector = TextDetector()
-    resized_img, scaling_factor = detector.resize_image(sample_image)
-    assert isinstance(resized_img, Image.Image)
+    resized_img, scaling_factor = detector._resize_image(sample_image)
+    assert isinstance(resized_img, np.ndarray)
     assert isinstance(scaling_factor, float)
 
 
