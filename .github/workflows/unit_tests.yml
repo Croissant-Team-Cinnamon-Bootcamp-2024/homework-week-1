@@ -18,6 +18,10 @@ jobs:
       with:
         python-version: '3.x'
 
+    - name: Install tesseract
+      run: |
+        sudo apt-get -y update && sudo apt-get install -y tesseract-ocr tesseract-ocr-fra
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
