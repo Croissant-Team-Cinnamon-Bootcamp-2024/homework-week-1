@@ -17,7 +17,7 @@ print(FILE_PATH)
 if not os.path.exists(FILE_PATH):
     os.makedirs(FILE_PATH)
 
-from test import genImg_text
+from .test import genImg_text
 
 
 @dataclass
@@ -46,7 +46,7 @@ class JsonProcessor:
         return 1234
 
 
-print(JsonProcessor.process(tmp))
+# print(JsonProcessor.process(tmp))
 # JsonProcessor.process(tmp)
 
 from reportlab.lib.utils import ImageReader

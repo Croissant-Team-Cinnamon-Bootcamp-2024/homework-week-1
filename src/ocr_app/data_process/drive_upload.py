@@ -4,8 +4,8 @@ from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
 folder_id = '1dGRj7HaiKj2YZNcYZA3MB55ZhrcoXaYM'
-current_dir = os.path.dirname(os.path.abspath(__file__))
-client_secrets_file = os.path.join(current_dir, 'client_secrets.json')
+# current_dir = os.path.dirname(os.path.abspath(__file__))
+client_secrets_file = 'client_secrets.json'
 
 google_auth = GoogleAuth()
 google_auth.settings['client_config_file'] = client_secrets_file
@@ -33,6 +33,8 @@ def delete_files_in_folder(folder_id=folder_id):
         print(f"Deleting file: {file['title']}")
         file.Delete()
 
+
+delete_files_in_folder()
 
 # def upload_file(file_path_list = upload_files):
 #     for file in file_path_list:

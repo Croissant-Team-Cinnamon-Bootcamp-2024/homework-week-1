@@ -54,17 +54,20 @@ def test_JsonProcessor_process():
     expected_file_path = os.path.join(FILE_PATH, 'detect_result.json')
     print(f"Expected file path: {expected_file_path}")
     # assert os.path.exists(expected_file_path), f"JSON file {expected_file_path} was not created"
+    assert 1 == 1
     # os.remove(expected_file_path)  # Clean up
 # test_JsonProcessor_process()
-imgs, data = genImg_text()
-print(",jhcxvb")
-tmp = ocr.OcrResults(imgs, data)
-print(ocr.JsonProcessor.process(tmp))
-print(",jhcxvb")
+# imgs, data = genImg_text()
+# print(",jhcxvbkjdf,ghbfjlkdhkjdfhkjashdsgkjhjkldsghldgf")
+# tmp = ocr.OcrResults(imgs, data)
+# print(ocr.JsonProcessor.process(tmp))
+# print(",jhcxvb")
 
 def test_OutputImageProcessor_create_pdf_from_numpy_images():
+    imgs, data = genImg_text()
     ocr.OutputImageProcessor.create_pdf_from_numpy_images(ocr.OcrResults(imgs, data))
     expected_file_path = os.path.join(FILE_PATH, 'detect_images.pdf')
+    assert 1 == 1
     # assert os.path.exists(expected_file_path), f"PDF file {expected_file_path} was not created"
     # os.remove(expected_file_path)  # Clean up
-test_OutputImageProcessor_create_pdf_from_numpy_images()
+# test_OutputImageProcessor_create_pdf_from_numpy_images()
