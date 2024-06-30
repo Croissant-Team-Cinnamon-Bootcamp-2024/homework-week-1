@@ -28,6 +28,10 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
+    - name: Install OCR package
+      run: |
+        pip install -U .
+
     - name: Check for tests
       id: check_tests
       run: |
