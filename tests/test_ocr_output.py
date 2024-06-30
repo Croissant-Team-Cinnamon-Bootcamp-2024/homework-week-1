@@ -1,7 +1,21 @@
 import random
 import string
 import sys
+import os
+
 sys.path.append('../src')
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+
+# import os
+
+FILE_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),
+    'results',
+)
+
+if not os.path.exists(FILE_PATH):
+    print("jhdfbhjsdafgjkkkkjhasfdggfjdshgjhsfghjsfgdhjgfsdhjgsfdjhgshjfdgsfd")
+    os.makedirs(FILE_PATH)
 
 import numpy as np
 from data_process.data_model.ocr_output import JsonProcessor, OcrResults, OutputImageProcessor
@@ -52,14 +66,17 @@ for page in range(2):
     imgs.append(img)
     data.append(texts)
 
-
 def test_JsonProcessor_process():
+    print(f"FILE_PATH: {FILE_PATH}")
     JsonProcessor.process(OcrResults(imgs, data))
-
+    expected_file_path = os.path.join(FILE_PATH, 'detect_result.json')
+    print(f"Expected file path: {expected_file_path}")
+    assert os.path.exists(expected_file_path), f"JSON file {expected_file_path} was not created"
+    os.remove(expected_file_path)  # Clean up
+test_JsonProcessor_process()
 
 def test_OutputImageProcessor_create_pdf_from_numpy_images():
     OutputImageProcessor.create_pdf_from_numpy_images(OcrResults(imgs, data))
-
-
-test_JsonProcessor_process()
-test_OutputImageProcessor_create_pdf_from_numpy_images()
+    expected_file_path = os.path.join(FILE_PATH, 'detect_images.pdf')
+    assert os.path.exists(expected_file_path), f"PDF file {expected_file_path} was not created"
+    os.remove(expected_file_path)  # Clean up
