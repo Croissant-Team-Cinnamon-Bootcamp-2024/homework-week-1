@@ -18,6 +18,8 @@ print(FILE_PATH)
 if not os.path.exists(FILE_PATH):
     os.makedirs(FILE_PATH)
 
+from test import genImg_text
+
 
 @dataclass
 class OcrResults:
@@ -25,8 +27,13 @@ class OcrResults:
     ocr_outputs: List[List[Dict[str, Dict[str, int]]]]
 
 
+imgs, ocrs = genImg_text()
+tmp = OcrResults(imgs, ocrs)
+
+
 class JsonProcessor:
-    def process(input: OcrResults) -> None:
+    @staticmethod
+    def process(input: OcrResults) -> int:
         print("in process")
         import json
 
@@ -37,7 +44,10 @@ class JsonProcessor:
         print(f"output_file: {output_file}")
         with open(output_file, 'w') as f:
             json.dump(input.ocr_outputs, f, indent=4)
+        return 1234
 
+
+# JsonProcessor.process(tmp)
 
 from reportlab.lib.utils import ImageReader
 
