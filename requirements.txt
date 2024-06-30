@@ -1,3 +1,5 @@
+numpy
+pytesseract
+opencv-python
 pillow
 pillow-heif
-numpy
