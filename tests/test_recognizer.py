@@ -1,12 +1,8 @@
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 import pytest
 from PIL import Image
 
-from src.model.detector import TextDetector
-from src.model.recognizer import TextRecognizer
+from ocr_app.model.detector import TextDetector
+from ocr_app.model.recognizer import TextRecognizer
 
 
 @pytest.fixture
