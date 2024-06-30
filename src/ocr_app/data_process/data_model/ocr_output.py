@@ -9,9 +9,12 @@ from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 
 FILE_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__)))),
+    os.path.dirname(
+        os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+    ),
     'results',
 )
+print(FILE_PATH)
 if not os.path.exists(FILE_PATH):
     os.makedirs(FILE_PATH)
 
@@ -24,9 +27,14 @@ class OcrResults:
 
 class JsonProcessor:
     def process(input: OcrResults) -> None:
+        print("in process")
         import json
 
+        print(f"FILE_PATH: {FILE_PATH}")
+
+        print("ok")
         output_file = os.path.join(FILE_PATH, 'detect_result.json')
+        print(f"output_file: {output_file}")
         with open(output_file, 'w') as f:
             json.dump(input.ocr_outputs, f, indent=4)
 
