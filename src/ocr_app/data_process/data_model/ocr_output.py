@@ -8,9 +8,7 @@ from PIL import Image
 from reportlab.pdfgen import canvas
 
 FILE_PATH = os.path.join(
-    os.path.dirname(
-        os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
-    ),
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))),
     'results',
 )
 print(FILE_PATH)
@@ -54,9 +52,7 @@ from reportlab.lib.utils import ImageReader
 
 class OutputImageProcessor:
     @staticmethod
-    def create_pdf_from_numpy_images(
-        input: OcrResults, output_filename='detect_images.pdf'
-    ):
+    def create_pdf_from_numpy_images(input: OcrResults, output_filename='detect_images.pdf'):
         image_list = input.images
         output_file = os.path.join(FILE_PATH, output_filename)
 

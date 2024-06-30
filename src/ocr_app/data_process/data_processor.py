@@ -1,9 +1,5 @@
 from .data_model.input_image import OcrImages
-from .input_handler.image_handler import (
-    HeicFileHandler,
-    PngFileHandler,
-    TiffFileHandler,
-)
+from .input_handler.image_handler import HeicFileHandler, PngFileHandler, TiffFileHandler
 from .input_handler.pdf_handler import DocFileHandler, DocxFileHandler, PdfFileHandler
 
 
