@@ -5,7 +5,6 @@ from typing import Dict, List
 
 import numpy as np
 from PIL import Image
-from reportlab.lib.units import inch
 from reportlab.pdfgen import canvas
 
 FILE_PATH = os.path.join(
@@ -47,6 +46,7 @@ class JsonProcessor:
         return 1234
 
 
+print(JsonProcessor.process(tmp))
 # JsonProcessor.process(tmp)
 
 from reportlab.lib.utils import ImageReader
@@ -55,19 +55,21 @@ from reportlab.lib.utils import ImageReader
 class OutputImageProcessor:
     @staticmethod
     def create_pdf_from_numpy_images(
-        input: OcrResults, output_filename='detect_images.pdf', img_width=6 * inch
+        input: OcrResults, output_filename='detect_images.pdf'
     ):
         image_list = input.images
         output_file = os.path.join(FILE_PATH, output_filename)
-        c = canvas.Canvas(output_file)
 
-        for i, img_array in enumerate(image_list):
+        # Create a PDF with the first page
+        first_img = Image.fromarray(image_list[0])
+        c = canvas.Canvas(output_file, pagesize=(first_img.width, first_img.height))
+
+        for img_array in image_list:
             # Convert numpy array to PIL Image
             img = Image.fromarray(img_array)
 
-            # Calculate aspect ratio and height
-            aspect_ratio = img.width / img.height
-            img_height = img_width / aspect_ratio
+            # Set the page size to match the image dimensions
+            c.setPageSize((img.width, img.height))
 
             # Convert PIL Image to bytes
             img_byte_arr = BytesIO()
@@ -77,17 +79,17 @@ class OutputImageProcessor:
             # Use ImageReader to handle BytesIO
             img_reader = ImageReader(img_byte_arr)
 
-            # Add image to the PDF
+            # Draw the image on the entire page
             c.drawImage(
                 img_reader,
-                x=inch,
-                y=c._pagesize[1] - img_height - inch,
-                width=img_width,
-                height=img_height,
+                x=0,
+                y=0,
+                width=img.width,
+                height=img.height,
             )
 
-            # Add a new page for the next image (except for the last one)
-            if i < len(image_list) - 1:
-                c.showPage()
+            # Move to the next page
+            c.showPage()
 
+        # Save the PDF
         c.save()

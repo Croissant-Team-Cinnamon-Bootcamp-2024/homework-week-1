@@ -13,7 +13,8 @@ if not os.path.exists(FILE_PATH):
     os.makedirs(FILE_PATH)
 
 import numpy as np
-from ocr_app.data_process.data_model.ocr_output import JsonProcessor, OcrResults, OutputImageProcessor
+import ocr_app.data_process.data_model.ocr_output as ocr
+# import JsonProcessor, OcrResults, OutputImageProcessor
 
 
 def generate_arbitrary_string():
@@ -49,17 +50,20 @@ def genImg_text():
 def test_JsonProcessor_process():
     # print(f"FILE_PATH: {FILE_PATH}")
     imgs, data = genImg_text()
-    JsonProcessor.process(OcrResults(imgs, data))
+    ocr.JsonProcessor.process(ocr.OcrResults(imgs, data))
     expected_file_path = os.path.join(FILE_PATH, 'detect_result.json')
     print(f"Expected file path: {expected_file_path}")
     # assert os.path.exists(expected_file_path), f"JSON file {expected_file_path} was not created"
     # os.remove(expected_file_path)  # Clean up
 # test_JsonProcessor_process()
 imgs, data = genImg_text()
-print(JsonProcessor.process(OcrResults(imgs, data)))
+print(",jhcxvb")
+tmp = ocr.OcrResults(imgs, data)
+print(ocr.JsonProcessor.process(tmp))
+print(",jhcxvb")
 
 def test_OutputImageProcessor_create_pdf_from_numpy_images():
-    OutputImageProcessor.create_pdf_from_numpy_images(OcrResults(imgs, data))
+    ocr.OutputImageProcessor.create_pdf_from_numpy_images(ocr.OcrResults(imgs, data))
     expected_file_path = os.path.join(FILE_PATH, 'detect_images.pdf')
     # assert os.path.exists(expected_file_path), f"PDF file {expected_file_path} was not created"
     # os.remove(expected_file_path)  # Clean up
