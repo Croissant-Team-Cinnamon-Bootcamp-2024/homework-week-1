@@ -6,4 +6,3 @@ pillow-heif
 PyMuPDF
 docx2pdf
 doc2docx
-
