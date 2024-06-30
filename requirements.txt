@@ -1,6 +1,9 @@
+numpy
+pytesseract
+opencv-python
 pillow
 pillow-heif
-numpy
 PyMuPDF
 docx2pdf
 doc2docx
+
