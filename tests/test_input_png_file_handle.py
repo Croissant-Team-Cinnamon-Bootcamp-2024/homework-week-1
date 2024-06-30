@@ -1,8 +1,5 @@
-import sys
-sys.path.append("../src")
-
-from data_process.data_model.input_image import OcrImages
-from data_process.input_handler.image_handler import (PngFileHandler,
+from ocr_app.data_process.data_model.input_image import OcrImages
+from ocr_app.data_process.input_handler.image_handler import (PngFileHandler,
                                                     HeicFileHandler,
                                                     TiffFileHandler)
 
@@ -36,7 +33,7 @@ def test_heic_handler_process():
     # num channels should be 3 for RGB image
     assert images.image_list[0].shape[-1] == NUM_CHANNELS
  
- def test_tiff_handler_process():
+def test_tiff_handler_process():
     tiff_file = "./assets/ocr-test.tiff"
     file_handler = TiffFileHandler()
     can_handle = file_handler.can_handle(tiff_file)
