@@ -42,7 +42,7 @@ class TextDetector:
             )
         else:
             scaling_factor = 1.0
-            
+
         return img, float(scaling_factor)
 
     def preprocess_image(self, img: np.ndarray) -> Tuple[np.ndarray, float]:
