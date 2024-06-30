@@ -1,6 +1,3 @@
-# import sys
-# sys.path.append("../src")
-
 from ocr_app.data_process.data_model.input_image import OcrImages
 from ocr_app.data_process.input_handler.pdf_handler import (DocFileHandler,
                                                     DocxFileHandler,
