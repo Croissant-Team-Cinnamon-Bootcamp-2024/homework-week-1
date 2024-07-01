@@ -5,22 +5,23 @@ from PIL import Image
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
-from ocr_app.data_process.data_model.ocr_output import OcrResults
+from ..data_model.ocr_output import OcrResults
 
-FILE_PATH = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))),
-    'results',
-)
-print(FILE_PATH)
-if not os.path.exists(FILE_PATH):
-    os.makedirs(FILE_PATH)
+DEFAULT_SAVE_DIR = "results"
 
 
 class OutputImageProcessor:
     @staticmethod
-    def create_pdf_from_numpy_images(input: OcrResults, output_filename='detect_images.pdf'):
+    def create_pdf_from_numpy_images(
+        input: OcrResults,
+        output_dir: str = DEFAULT_SAVE_DIR,
+        output_filename: str = 'detect_images.pdf',
+    ):
         image_list = input.images
-        output_file = os.path.join(FILE_PATH, output_filename)
+
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+        output_file = os.path.join(output_dir, output_filename)
 
         # Create a PDF with the first page
         first_img = Image.fromarray(image_list[0])

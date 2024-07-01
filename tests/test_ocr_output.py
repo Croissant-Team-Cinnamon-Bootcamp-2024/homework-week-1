@@ -1,17 +1,11 @@
 import random
 import string
-import sys
 import os
 
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.insert(0, project_root)
-FILE_PATH = os.path.join(project_root, 'results')
-
 import numpy as np
-import ocr_app.data_process.data_model.ocr_output as ocr
-import ocr_app.data_process.output_handler.json_process as json_output
-import ocr_app.data_process.output_handler.image_process as image_output
-# import JsonProcessor, OcrResults, OutputImageProcessor
+from ocr_app.data_process.data_model.ocr_output import OcrResults
+from ocr_app.data_process.output_handler.json_process import JsonProcessor
+from ocr_app.data_process.output_handler.image_process import OutputImageProcessor
 
 
 def generate_arbitrary_string():
@@ -22,7 +16,6 @@ def generate_arbitrary_string():
 
 def generate_random_int(l, r):
     return random.randint(l, r)
-
 
 def genImg_text():
     img_size = [generate_random_int(512, 1024), generate_random_int(512, 1024)]
@@ -44,27 +37,32 @@ def genImg_text():
         )
     return img, texts
 
+
 def test_JsonProcessor_process():
-    # print(f"FILE_PATH: {FILE_PATH}")
     imgs, data = genImg_text()
-    json_output.JsonProcessor.process(ocr.OcrResults(imgs, data))
-    expected_file_path = os.path.join(FILE_PATH, 'detect_result.json')
-    print(f"Expected file path: {expected_file_path}")
-    # assert os.path.exists(expected_file_path), f"JSON file {expected_file_path} was not created"
-    assert 1 == 1
-    # os.remove(expected_file_path)  # Clean up
-# test_JsonProcessor_process()
-# imgs, data = genImg_text()
-# print(",jhcxvbkjdf,ghbfjlkdhkjdfhkjashdsgkjhjkldsghldgf")
-# tmp = ocr.OcrResults(imgs, data)
-# print(ocr.JsonProcessor.process(tmp))
-# print(",jhcxvb")
+    dummy_model_output = OcrResults(imgs, data)
+    
+    save_dir = "./results"
+    expected_file_path = os.path.join(save_dir, 'detect_result.json')
+    
+    JsonProcessor.process(
+        input=dummy_model_output, 
+        output_dir=save_dir,
+    )
+    assert os.path.exists(expected_file_path), f"JSON file {expected_file_path} was not created"
+    os.remove(expected_file_path)  # Clean up
+
 
 def test_OutputImageProcessor_create_pdf_from_numpy_images():
     imgs, data = genImg_text()
-    image_output.OutputImageProcessor.create_pdf_from_numpy_images(ocr.OcrResults(imgs, data))
-    expected_file_path = os.path.join(FILE_PATH, 'detect_images.pdf')
-    assert 1 == 1
-    # assert os.path.exists(expected_file_path), f"PDF file {expected_file_path} was not created"
-    # os.remove(expected_file_path)  # Clean up
-# test_OutputImageProcessor_create_pdf_from_numpy_images()
+    dummy_model_output = OcrResults(imgs, data)
+    
+    save_dir = "./results"
+    expected_file_path = os.path.join(save_dir, 'detect_images.pdf')
+    
+    OutputImageProcessor.create_pdf_from_numpy_images(
+        input=dummy_model_output,
+        output_dir=save_dir,
+    )
+    
+    assert os.path.exists(expected_file_path), f"Image pdf file {expected_file_path} was not created"
