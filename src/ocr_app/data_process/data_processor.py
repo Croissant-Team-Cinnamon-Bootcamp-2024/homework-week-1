@@ -4,7 +4,7 @@ from .input_handler.image_handler import (
     PngFileHandler,
     TiffFileHandler,
 )
-from .input_handler.pdf_handler import DocFileHandler, DocxFileHandler, PdfFileHandler
+from .input_handler.pdf_handler import DocumentFileHandler, PdfFileHandler
 
 
 class ImageFileHandler(object):
@@ -14,8 +14,7 @@ class ImageFileHandler(object):
             HeicFileHandler(),
             TiffFileHandler(),
             PdfFileHandler(),
-            DocxFileHandler(),
-            DocFileHandler(),
+            DocumentFileHandler(),
         ]
 
     def process_image(self, filepath: str) -> OcrImages:

@@ -20,7 +20,7 @@ jobs:
 
     - name: Install tesseract
       run: |
-        sudo apt-get -y update && sudo apt-get install -y tesseract-ocr tesseract-ocr-fra
+        sudo apt-get -y update && sudo apt-get install -y tesseract-ocr tesseract-ocr-fra libreoffice
 
     - name: Install dependencies
       run: |
