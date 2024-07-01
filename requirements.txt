@@ -1,8 +1,9 @@
 numpy
-pillow
-reportlab
-pydrive
 pytesseract
 opencv-python
+pillow
 pillow-heif
 PyMuPDF
+comtypes
+reportlab
+pydrive
