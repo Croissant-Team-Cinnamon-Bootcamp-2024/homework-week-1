@@ -7,11 +7,6 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, project_root)
 FILE_PATH = os.path.join(project_root, 'results')
 
-print(FILE_PATH)
-if not os.path.exists(FILE_PATH):
-    print("jhdfbhjsdafgjkkkkjhasfdggfjdshgjhsfghjsfgdhjgfsdhjgsfdjhgshjfdgsfd")
-    os.makedirs(FILE_PATH)
-
 import numpy as np
 import ocr_app.data_process.data_model.ocr_output as ocr
 # import JsonProcessor, OcrResults, OutputImageProcessor
