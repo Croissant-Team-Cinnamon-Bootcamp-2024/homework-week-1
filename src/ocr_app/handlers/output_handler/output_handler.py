@@ -5,7 +5,7 @@ from .ocr_output import OcrResults
 DEFAULT_SAVE_DIR = "results"
 
 
-class ModelOutputHandler(object):
+class OutputHandler(object):
     @staticmethod
     def process_output(
         ocr_results: OcrResults,

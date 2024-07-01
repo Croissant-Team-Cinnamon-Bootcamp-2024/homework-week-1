@@ -4,8 +4,8 @@ import fitz
 import numpy as np
 from PIL import Image
 
-from ..data_model.input_image import OcrImages
 from .base_handler import BaseHandler
+from .ocr_images import OcrImages
 
 
 class PdfHandler(BaseHandler):

@@ -5,7 +5,7 @@ from PIL import Image
 from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
-from ..data_model.ocr_output import OcrResults
+from .ocr_output import OcrResults
 
 DEFAULT_SAVE_DIR = "results"
 

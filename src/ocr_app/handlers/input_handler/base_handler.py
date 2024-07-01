@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from ..data_model.input_image import OcrImages
+from .ocr_images import OcrImages
 
 
 class BaseHandler(ABC):

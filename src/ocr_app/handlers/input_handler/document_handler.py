@@ -3,7 +3,7 @@ import platform
 import subprocess
 from pathlib import Path
 
-from ..data_model.input_image import OcrImages
+from .ocr_images import OcrImages
 from .pdf_handler import PdfHandler
 
 

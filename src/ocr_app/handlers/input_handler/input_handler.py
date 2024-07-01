@@ -1,9 +1,10 @@
-from .data_model.input_image import OcrImages
-from .input_handler.image_handler import HeicHandler, PngHandler, TiffHandler
-from .input_handler.pdf_handler import DocumentHandler, PdfHandler
+from .document_handler import DocumentHandler
+from .image_handler import HeicHandler, PngHandler, TiffHandler
+from .ocr_images import OcrImages
+from .pdf_handler import PdfHandler
 
 
-class Handler(object):
+class InputHandler(object):
     def __init__(self) -> None:
         self.list_handlers = [
             PngHandler(),

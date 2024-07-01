@@ -23,7 +23,7 @@ def sample_preprocessed_image(sample_image):
 def test_extract_text_lines(sample_preprocessed_image):
     ocr = OCR()
     preprocessed_image, scaling_factor = sample_preprocessed_image
-    text_lines = ocr.extract_text_lines(preprocessed_image, scaling_factor)
+    text_lines = ocr._extract_text_lines(preprocessed_image, scaling_factor)
     assert isinstance(text_lines, list)
     assert len(text_lines) >= 0  # Assuming there might be no text in the sample image
     for line in text_lines:

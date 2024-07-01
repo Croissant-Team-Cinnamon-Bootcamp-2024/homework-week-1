@@ -13,13 +13,8 @@ def sample_image():
 
 
 def test_resize_image(sample_image):
-<<<<<<< HEAD:tests/test_detector.py
-    detector = TextDetector()
-    resized_img, scaling_factor = detector._resize_image(sample_image)
-=======
     processor = DataPreprocess()
     resized_img, scaling_factor = processor._resize_image(sample_image)
->>>>>>> feat/ocr-model:tests/test_data_preprocess/test_data_preprocess.py
     assert isinstance(resized_img, np.ndarray)
     assert isinstance(scaling_factor, float)
 

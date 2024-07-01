@@ -4,8 +4,8 @@ import numpy as np
 from PIL import Image
 from pillow_heif import register_heif_opener
 
-from ..data_model.input_image import OcrImages
 from .base_handler import BaseHandler
+from .ocr_images import OcrImages
 
 
 class PngHandler(BaseHandler):
