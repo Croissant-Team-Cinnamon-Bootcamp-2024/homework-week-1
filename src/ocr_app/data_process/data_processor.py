@@ -1,7 +1,11 @@
 from .data_model.input_image import OcrImages
 from .data_model.ocr_output import OcrResults
-from .input_handler.image_handler import HeicFileHandler, PngFileHandler, TiffFileHandler
-from .input_handler.pdf_handler import DocFileHandler, DocxFileHandler, PdfFileHandler
+from .input_handler.image_handler import (
+    HeicFileHandler,
+    PngFileHandler,
+    TiffFileHandler,
+)
+from .input_handler.pdf_handler import DocumentFileHandler, PdfFileHandler
 from .output_handler.image_process import OutputImageProcessor
 from .output_handler.json_process import JsonProcessor
 
@@ -15,8 +19,7 @@ class ImageFileHandler(object):
             HeicFileHandler(),
             TiffFileHandler(),
             PdfFileHandler(),
-            DocxFileHandler(),
-            DocFileHandler(),
+            DocumentFileHandler(),
         ]
 
     def process_image(self, filepath: str) -> OcrImages:

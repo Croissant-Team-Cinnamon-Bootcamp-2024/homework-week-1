@@ -8,7 +8,9 @@ class TextRecognizer:
     def __init__(self):
         pass
 
-    def extract_text_lines(self, image: np.ndarray, scaling_factor: float) -> List[Dict[str, Dict[str, int]]]:
+    def extract_text_lines(
+        self, image: np.ndarray, scaling_factor: float
+    ) -> List[Dict[str, Dict[str, int]]]:
         """
         Extracts text lines from the input image using Tesseract OCR.
 
