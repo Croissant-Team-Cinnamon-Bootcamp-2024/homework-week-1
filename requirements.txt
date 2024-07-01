@@ -1,7 +1,9 @@
 numpy
+pillow
+reportlab
+pydrive
 pytesseract
 opencv-python
-pillow
 pillow-heif
 PyMuPDF
 docx2pdf
