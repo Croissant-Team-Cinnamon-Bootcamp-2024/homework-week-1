@@ -5,10 +5,10 @@ from PIL import Image
 from pillow_heif import register_heif_opener
 
 from ..data_model.input_image import OcrImages
-from .base_handler import BaseFileHandler
+from .base_handler import BaseHandler
 
 
-class PngFileHandler(BaseFileHandler):
+class PngHandler(BaseHandler):
     def process(self, filepath: str) -> OcrImages:
         image = Image.open(filepath)
         image = image.convert("RGB")
@@ -20,7 +20,7 @@ class PngFileHandler(BaseFileHandler):
         return mime_text == guess_mime_type
 
 
-class HeicFileHandler(PngFileHandler):
+class HeicHandler(PngHandler):
     def process(self, filepath: str) -> OcrImages:
         register_heif_opener()
         return super().process(filepath)
@@ -31,7 +31,7 @@ class HeicFileHandler(PngFileHandler):
         return mime_text == guess_mime_type
 
 
-class TiffFileHandler(PngFileHandler):
+class TiffHandler(PngHandler):
     def can_handle(self, filepath: str) -> bool:
         mime_text = "image/tiff"
         guess_mime_type, _ = mimetypes.guess_type(filepath)
