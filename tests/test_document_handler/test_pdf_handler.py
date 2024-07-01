@@ -1,6 +1,6 @@
 import pytest
-from ocr_app.data_process.data_model.input_image import OcrImages
-from ocr_app.data_process.input_handler.pdf_handler import PdfHandler
+from ocr_app.handlers.input.ocr_images import OcrImages
+from ocr_app.handlers.input.document_handler import PdfHandler
 import os
 
 IMAGE_SHAPE = 3

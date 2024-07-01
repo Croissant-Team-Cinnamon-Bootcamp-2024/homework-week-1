@@ -1,7 +1,7 @@
-import os
 import pytest
-from ocr_app.data_process.input_handler.image_handler import HeicHandler
-from ocr_app.data_process.data_model.input_image import OcrImages
+from ocr_app.handlers.input.ocr_images import OcrImages
+from ocr_app.handlers.input.image_handler import HeicHandler
+import os
 
 IMAGE_SHAPE = 3
 NUM_CHANNELS = 3

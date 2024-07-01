@@ -1,7 +1,7 @@
 from typing import Dict, List
 
-from ..handlers.input_handler.ocr_images import OcrImages
-from ..handlers.output_handler.ocr_output import OcrResults
+from ..handlers.input.ocr_images import OcrImages
+from ..handlers.output.ocr_output import OcrResults
 from .data_preprocess import DataPreprocess
 
 DataPreprocess

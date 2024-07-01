@@ -1,7 +1,7 @@
-import os
 import pytest
-from ocr_app.data_process.data_model.input_image import OcrImages
-from ocr_app.data_process.input_handler.pdf_handler import DocumentHandler
+from ocr_app.handlers.input.ocr_images import OcrImages
+from ocr_app.handlers.input.document_handler import DocumentHandler
+import os
 
 IMAGE_SHAPE = 3
 NUM_CHANNELS = 3
