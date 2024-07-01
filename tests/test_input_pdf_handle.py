@@ -1,6 +1,5 @@
 from ocr_app.data_process.data_model.input_image import OcrImages
-from ocr_app.data_process.input_handler.pdf_handler import (DocumentFileHandler,
-                                                    PdfFileHandler)
+from ocr_app.data_process.input_handler.pdf_handler import DocumentFileHandler, PdfFileHandler
 
 IMAGE_SHAPE = 3
 NUM_CHANNELS = 3
