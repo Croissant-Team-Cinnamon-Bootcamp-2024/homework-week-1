@@ -15,9 +15,6 @@ print(FILE_PATH)
 if not os.path.exists(FILE_PATH):
     os.makedirs(FILE_PATH)
 
-from .test import genImg_text
-
-
 @dataclass
 class OcrResults:
     images: List[np.ndarray]
