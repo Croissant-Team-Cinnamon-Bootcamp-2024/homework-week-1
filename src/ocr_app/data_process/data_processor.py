@@ -31,17 +31,17 @@ class ImageFileHandler(object):
 
 
 class ModelOutputHandler(object):
+    @staticmethod
     def process_output(
-        self,
-        detect_results: OcrResults,
+        ocr_results: OcrResults,
         output_dir: str = DEFAULT_SAVE_DIR,
     ) -> None:
         JsonProcessor.process(
-            input=detect_results,
+            input=ocr_results,
             output_dir=output_dir,
         )
 
         OutputImageProcessor.create_pdf_from_numpy_images(
-            input=detect_results,
+            input=ocr_results,
             output_dir=output_dir,
         )
