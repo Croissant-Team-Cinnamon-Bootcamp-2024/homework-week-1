@@ -1,3 +1,4 @@
+import numpy as np
 import pytest
 from PIL import Image
 
@@ -9,7 +10,7 @@ from ocr_app.model.recognizer import TextRecognizer
 def sample_image():
     # Provide a sample image for testing
     img = Image.new('RGB', (1000, 1000), color=(73, 109, 137))
-    return img
+    return np.array(img)
 
 
 @pytest.fixture
