@@ -9,6 +9,8 @@ FILE_PATH = os.path.join(project_root, 'results')
 
 import numpy as np
 import ocr_app.data_process.data_model.ocr_output as ocr
+import ocr_app.output_process.json_process as json_output
+import ocr_app.output_process.image_process as image_output
 # import JsonProcessor, OcrResults, OutputImageProcessor
 
 
@@ -45,7 +47,7 @@ def genImg_text():
 def test_JsonProcessor_process():
     # print(f"FILE_PATH: {FILE_PATH}")
     imgs, data = genImg_text()
-    ocr.JsonProcessor.process(ocr.OcrResults(imgs, data))
+    json_output.JsonProcessor.process(ocr.OcrResults(imgs, data))
     expected_file_path = os.path.join(FILE_PATH, 'detect_result.json')
     print(f"Expected file path: {expected_file_path}")
     # assert os.path.exists(expected_file_path), f"JSON file {expected_file_path} was not created"
@@ -60,7 +62,7 @@ def test_JsonProcessor_process():
 
 def test_OutputImageProcessor_create_pdf_from_numpy_images():
     imgs, data = genImg_text()
-    ocr.OutputImageProcessor.create_pdf_from_numpy_images(ocr.OcrResults(imgs, data))
+    image_output.OutputImageProcessor.create_pdf_from_numpy_images(ocr.OcrResults(imgs, data))
     expected_file_path = os.path.join(FILE_PATH, 'detect_images.pdf')
     assert 1 == 1
     # assert os.path.exists(expected_file_path), f"PDF file {expected_file_path} was not created"
