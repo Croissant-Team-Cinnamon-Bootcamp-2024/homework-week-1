@@ -1,12 +1,11 @@
 from typing import Dict, List
 
+import numpy as np
+import pytesseract
+
 from ..handlers.input.ocr_images import OcrImages
 from ..handlers.output.ocr_output import OcrResults
 from .data_preprocess import DataPreprocess
-
-DataPreprocess
-import numpy as np
-import pytesseract
 
 
 class OCR:
