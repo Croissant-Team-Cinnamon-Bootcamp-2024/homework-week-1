@@ -13,7 +13,9 @@ class OCR:
     def __init__(self):
         pass
 
-    def _extract_text_lines(self, image: np.ndarray, scaling_factor: float) -> List[Dict[str, Dict[str, int]]]:
+    def _extract_text_lines(
+        self, image: np.ndarray, scaling_factor: float
+    ) -> List[Dict[str, Dict[str, int]]]:
         """
         Extracts text lines from the input image using Tesseract OCR.
 

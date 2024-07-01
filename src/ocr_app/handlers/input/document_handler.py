@@ -36,7 +36,9 @@ class DocumentHandler(PdfHandler):
             word = comtypes.client.CreateObject('Word.Application')
             doc_path = os.path.abspath(doc_filepath)
             temp_dir = os.environ['TEMP']
-            pdf_path = os.path.join(temp_dir, f"{os.path.splitext(os.path.basename(doc_path))[0]}.pdf")
+            pdf_path = os.path.join(
+                temp_dir, f"{os.path.splitext(os.path.basename(doc_path))[0]}.pdf"
+            )
 
             doc = word.Documents.Open(doc_path)
             doc.SaveAs(pdf_path, FileFormat=17)  # 17 corresponds to PDF format
@@ -52,7 +54,9 @@ class DocumentHandler(PdfHandler):
         try:
             doc_path = os.path.abspath(docx_filepath)
             temp_dir = '/tmp'
-            pdf_path = os.path.join(temp_dir, f"{os.path.splitext(os.path.basename(doc_path))[0]}.pdf")
+            pdf_path = os.path.join(
+                temp_dir, f"{os.path.splitext(os.path.basename(doc_path))[0]}.pdf"
+            )
 
             command = [
                 'libreoffice',
@@ -63,7 +67,9 @@ class DocumentHandler(PdfHandler):
                 '--outdir',
                 temp_dir,
             ]
-            subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
+            subprocess.run(
+                command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True
+            )
 
             print(f"Converted {docx_filepath} to {pdf_path} successfully.")
             return pdf_path
