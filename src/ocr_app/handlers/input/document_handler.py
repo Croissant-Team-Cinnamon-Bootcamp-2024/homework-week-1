@@ -1,35 +1,13 @@
-import mimetypes
 import os
 import platform
 import subprocess
 from pathlib import Path
 
-import fitz
-import numpy as np
-from PIL import Image
-
-from ..data_model.input_image import OcrImages
-from .image_handler import BaseFileHandler
+from .ocr_images import OcrImages
+from .pdf_handler import PdfHandler
 
 
-class PdfFileHandler(BaseFileHandler):
-    def process(self, filepath: str) -> OcrImages:
-        images = []
-        document = fitz.open(filepath)
-        for page in document:
-            pix = page.get_pixmap()
-            img = Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-            images.append(np.array(img))
-        document.close()
-        return OcrImages(image_list=images)
-
-    def can_handle(self, filepath: str) -> bool:
-        mime_text = "application/pdf"
-        guess_mime_type, _ = mimetypes.guess_type(filepath)
-        return mime_text == guess_mime_type
-
-
-class DocumentFileHandler(PdfFileHandler):
+class DocumentHandler(PdfHandler):
     def process(self, filepath: str) -> OcrImages:
         pdf_filepath = self.convert_to_pdf(filepath)
         if pdf_filepath:
@@ -43,7 +21,6 @@ class DocumentFileHandler(PdfFileHandler):
         return ext in ('.doc', '.docx')
 
     def convert_to_pdf(self, input_filepath: str) -> str:
-        """Converts a document file to PDF."""
         if platform.system() == 'Windows':
             return self.convert_using_word(input_filepath)
         elif platform.system() == 'Linux':
@@ -53,7 +30,6 @@ class DocumentFileHandler(PdfFileHandler):
             return None
 
     def convert_using_word(self, doc_filepath: str) -> str:
-        """Converts a DOC file to PDF using Microsoft Word."""
         try:
             import comtypes.client
 
@@ -75,7 +51,6 @@ class DocumentFileHandler(PdfFileHandler):
             return None
 
     def convert_using_libreoffice(self, docx_filepath: str) -> str:
-        """Converts a document file to PDF using LibreOffice."""
         try:
             doc_path = os.path.abspath(docx_filepath)
             temp_dir = '/tmp'
@@ -83,7 +58,6 @@ class DocumentFileHandler(PdfFileHandler):
                 temp_dir, f"{os.path.splitext(os.path.basename(doc_path))[0]}.pdf"
             )
 
-            # Construct the command for LibreOffice
             command = [
                 'libreoffice',
                 '--headless',

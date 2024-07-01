@@ -3,12 +3,16 @@ from typing import Dict, List
 import numpy as np
 import pytesseract
 
+from ..handlers.input.ocr_images import OcrImages
+from ..handlers.output.ocr_output import OcrResults
+from .data_preprocess import DataPreprocess
 
-class TextRecognizer:
+
+class OCR:
     def __init__(self):
         pass
 
-    def extract_text_lines(
+    def _extract_text_lines(
         self, image: np.ndarray, scaling_factor: float
     ) -> List[Dict[str, Dict[str, int]]]:
         """
@@ -49,3 +53,13 @@ class TextRecognizer:
                     }
                 )
         return text_lines
+
+    def read_text(self, data: OcrImages) -> OcrResults:
+        list_ocr_output = []
+        for datum in data.image_list:
+            processor = DataPreprocess()
+            threshold, scaling_factor = processor.preprocess(datum)
+            output = self._extract_text_lines(threshold, scaling_factor)
+            list_ocr_output.append(output)
+
+        return OcrResults(data.image_list, list_ocr_output)

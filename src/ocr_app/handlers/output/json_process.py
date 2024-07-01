@@ -1,7 +1,7 @@
 import json
 import os
 
-from ..data_model.ocr_output import OcrResults
+from .ocr_output import OcrResults
 
 
 class JsonProcessor:
