@@ -2,7 +2,7 @@ from .data_model.input_image import OcrImages
 from .input_handler.image_handler import (
     HeicFileHandler,
     PngFileHandler,
-    TiffFileHandler,https://github.com/Croissant-Team-Cinnamon-Bootcamp-2024/homework-week-1/tree/feat/pdf-read/src/ocr_app/data_process
+    TiffFileHandler,
 )
 from .input_handler.pdf_handler import DocumentFileHandler, PdfFileHandler
 
