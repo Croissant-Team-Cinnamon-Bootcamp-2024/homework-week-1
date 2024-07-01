@@ -2,9 +2,9 @@ from .data_model.input_image import OcrImages
 from .input_handler.image_handler import (
     HeicFileHandler,
     PngFileHandler,
-    TiffFileHandler,
+    TiffFileHandler,https://github.com/Croissant-Team-Cinnamon-Bootcamp-2024/homework-week-1/tree/feat/pdf-read/src/ocr_app/data_process
 )
-from .input_handler.pdf_handler import DocFileHandler, DocxFileHandler, PdfFileHandler
+from .input_handler.pdf_handler import DocumentFileHandler, PdfFileHandler
 
 
 class ImageFileHandler(object):
@@ -14,8 +14,7 @@ class ImageFileHandler(object):
             HeicFileHandler(),
             TiffFileHandler(),
             PdfFileHandler(),
-            DocxFileHandler(),
-            DocFileHandler(),
+            DocumentFileHandler(),
         ]
 
     def process_image(self, filepath: str) -> OcrImages:
