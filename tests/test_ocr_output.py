@@ -9,8 +9,8 @@ FILE_PATH = os.path.join(project_root, 'results')
 
 import numpy as np
 import ocr_app.data_process.data_model.ocr_output as ocr
-import ocr_app.output_process.json_process as json_output
-import ocr_app.output_process.image_process as image_output
+import ocr_app.data_process.output_handler.json_process as json_output
+import ocr_app.data_process.output_handler.image_process as image_output
 # import JsonProcessor, OcrResults, OutputImageProcessor
 
 
