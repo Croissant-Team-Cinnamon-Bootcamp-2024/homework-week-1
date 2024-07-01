@@ -5,3 +5,5 @@ pillow
 pillow-heif
 PyMuPDF
 comtypes
+reportlab
+pydrive
