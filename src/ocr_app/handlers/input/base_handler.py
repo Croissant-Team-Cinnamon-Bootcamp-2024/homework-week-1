@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from ..data_model.input_image import OcrImages
 
 
-class BaseFileHandler(ABC):
+class BaseHandler(ABC):
     """Prepare image data and process as numpy array format
     Check file mime type to pass to specific handler
     https://mimetype.io/all-types

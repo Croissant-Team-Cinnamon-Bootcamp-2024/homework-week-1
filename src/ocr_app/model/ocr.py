@@ -4,7 +4,7 @@ import numpy as np
 import pytesseract
 
 
-class TextRecognizer:
+class OCR:
     def __init__(self):
         pass
 

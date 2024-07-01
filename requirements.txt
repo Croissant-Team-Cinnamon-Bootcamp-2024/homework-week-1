@@ -6,5 +6,3 @@ pytesseract
 opencv-python
 pillow-heif
 PyMuPDF
-docx2pdf
-doc2docx
