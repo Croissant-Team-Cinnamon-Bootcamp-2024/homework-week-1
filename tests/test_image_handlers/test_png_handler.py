@@ -1,12 +1,13 @@
 import pytest
 from ocr_app.data_process.data_model.input_image import OcrImages
 from ocr_app.data_process.input_handler.image_handler import PngHandler
+import os
 
 IMAGE_SHAPE = 3
 NUM_CHANNELS = 3
 
 def test_png_handler_process(assets_dir):
-    png_file = f"{assets_dir}/ocr-test.png"
+    png_file = os.path.join(assets_dir, 'ocr-test.png')
     file_handler = PngHandler()
     can_handle = file_handler.can_handle(png_file)
     assert can_handle
