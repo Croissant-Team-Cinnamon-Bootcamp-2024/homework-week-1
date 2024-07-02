@@ -18,7 +18,10 @@ class InputHandler(object):
         image = None
         for handler in self.list_handlers:
             if handler.can_handle(filepath):
-                image = handler.process(filepath)
+                try:
+                    image = handler.process(filepath)
+                except Exception as e:
+                    raise Exception(f"Cannot extract this image due to {e}")
                 break
         if image is None:
             raise NotImplementedError(f"File {filepath}: not supported!")
