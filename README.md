@@ -30,7 +30,7 @@ This app utilizes different tech stacks:
 - The ``JsonProcessor`` and ``OutputImageProcessor`` handle converting the OCR results to JSON and PDF formats, respectively.
 
 4. **Uploading**:
-The processed output (JSON and/or PDF) is uploaded to a drive using the ``drive_upload`` function.
+- The processed output (JSON and/or PDF) is uploaded to a drive using the ``drive_upload`` function.
 
 ## Set up
 How to use (ex: create virtual env, install requirements, command line, etc.)
