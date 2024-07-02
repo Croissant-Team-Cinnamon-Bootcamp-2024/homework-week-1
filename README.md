@@ -12,7 +12,25 @@ This app utilizes different tech stacks:
 - **Save and store outputs**: os, json
 
 ## App design
-System design
+
+
+![alt text](docs/code_design.jpg)
+
+### Workflow
+1. **Image read and preprocessing**:
+- The system accepts various file types (png, heic, tiff, pdf, doc) as input images.
+- The ``InputHandler`` reads the file and delegates processing to the appropriate file handler based on the file type. The selected handler processes the file and converts it into an ``OcrImages`` object containing preprocessed image data.
+- ``DataPreprocess`` resizes and preprocesses the images to prepare them for OCR.
+
+2. **OCR Model**:
+- The ``OCR`` class uses the preprocessed images to extract text lines and generate an ``OcrResults`` object.
+
+3. **Process Output**:
+- OutputHandler processes the ``OcrResults`` object from the previous step.
+- The ``JsonProcessor`` and ``OutputImageProcessor`` handle converting the OCR results to JSON and PDF formats, respectively.
+
+4. **Uploading**:
+The processed output (JSON and/or PDF) is uploaded to a drive using the ``drive_upload`` function.
 
 ## Set up
 
