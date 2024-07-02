@@ -20,3 +20,5 @@ class OutputHandler(object):
             input=ocr_results,
             output_dir=output_dir,
         )
+
+        print(f"Result files have been saved to /{output_dir}")

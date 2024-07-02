@@ -62,4 +62,5 @@ class OCR:
             output = self._extract_text_lines(threshold, scaling_factor)
             list_ocr_output.append(output)
 
+        print("Run OCR successfully!")
         return OcrResults(data.image_list, list_ocr_output)
