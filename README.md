@@ -15,4 +15,39 @@ This app utilizes different tech stacks:
 System design
 
 ## Set up
-How to use (ex: create virtual env, install requirements, command line, etc.)
+
+### Clone this repository
+```bash
+git clone https://github.com/Croissant-Team-Cinnamon-Bootcamp-2024/homework-week-1.git
+cd homework-week-1
+```
+
+### Install Dependencies
+
+For Linux, run
+```
+sudo apt-get install tesseract-ocr
+pip install .
+```
+
+For Windows, follow the below steps
+- Download Tesseract installer for Windows: https://github.com/UB-Mannheim/tesseract/wiki
+- Add the path to the directory of Tesseract folder (normally is: ```C:\Program Files\Tesseract-OCR```) to the System Environment Variables (edit the Path variable, click on **New** button and paste the path above).
+- Run ```pip install .```
+
+
+## Run OCR script
+
+For Linux, run
+```bash
+export GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
+# Run your own file by changing the path after -f
+python scripts/run.py -f assets/ocr-test.pdf
+```
+
+For Windows, run
+```bash
+set GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
+# Run your own file by changing the path after -f
+python scripts/run.py -f assets/ocr-test.pdf
+```
