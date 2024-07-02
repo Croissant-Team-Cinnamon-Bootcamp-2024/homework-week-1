@@ -1,5 +1,5 @@
-import os
 import argparse
+import os
 
 from ocr_app.handlers.input.input_handler import InputHandler
 from ocr_app.handlers.output.drive_upload import upload_file
@@ -15,20 +15,20 @@ parser.add_argument(
     '--file',
     type=str,
     required=True,
-    help='input image path (support format .png, .heic, .tiff, .pdf, .doc, .docx)'
+    help='input image path (support format .png, .heic, .tiff, .pdf, .doc, .docx)',
 )
 
 args = parser.parse_args()
 
 
-## Input data handler
+# Input data handler
 data = InputHandler().read(filepath=args.file)
 
-## OCR model detect
+# OCR model detect
 ocr = OCR()
 output = ocr.read_text(data)
 
-## Output data handler
+# Output data handler
 OutputHandler.process_output(output)
 
 if GGDRIVE_FOLDER_ID:
