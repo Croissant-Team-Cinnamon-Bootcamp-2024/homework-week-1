@@ -40,4 +40,3 @@ def file_exists_in_folder(folder_id, file_name):
 
 if __name__ == '__main__':
     upload_file()
-    # delete_files_in_folder()
