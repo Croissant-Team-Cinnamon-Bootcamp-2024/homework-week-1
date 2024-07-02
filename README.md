@@ -4,12 +4,11 @@
 
 This is an OCR app that could read all document and images and extract the texts and their corresponding locations in a json file. This app is helpful for information extraction to digital formats, making them easier to store, search, and manage. This app can support different input file types, such as: ``.png``, ``.heic``, ``.tiff``, ``.pdf``, ``.doc``, ``.docx``.
 
-This app utilizes different tech stacks:
+This app utilizes tech stacks:
 - **Read images/docs**: mimetypes, pillow, pillow-heif, PyMuPDF
-- **Preprocess images**: numpy
-- **Text detection**: opencv-python
-- **Text extraction**: pytesseract
-- **Save and store outputs**: os, json
+- **Preprocess images**: numpy, opencv-python
+- **OCR**: [pytesseract](https://pypi.org/project/pytesseract/)
+- **Save and store outputs**: json, pydrive
 
 ## App design
 
@@ -58,6 +57,7 @@ For Windows, follow the below steps
 
 For Linux, run
 ```bash
+# Skip this step if you do not want to upload to GGDrive
 export GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
 # Run your own file by changing the path after -f
 python scripts/run.py -f assets/ocr-test.pdf
@@ -65,7 +65,13 @@ python scripts/run.py -f assets/ocr-test.pdf
 
 For Windows, run
 ```bash
+# Skip this step if you do not want to upload to GGDrive
 set GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
 # Run your own file by changing the path after -f
 python scripts/run.py -f assets/ocr-test.pdf
 ```
+
+## Get Google Drive Folder ID
+
+
+## Get Google Drive account secret json file
