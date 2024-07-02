@@ -13,7 +13,7 @@ This app utilizes tech stacks:
 ## App design
 
 
-![alt text](docs/code_design.jpg)
+![App design image](docs/code_design.jpg)
 
 ### Workflow
 1. **Image read and preprocessing**:
@@ -55,6 +55,18 @@ For Windows, follow the below steps
 
 ## Run OCR script
 
+### Get Google Drive Secret file & Folder ID
+
+1. Follow [this instruction](https://pythonhosted.org/PyDrive/quickstart.html) to get Google Drive Secret file (rename to `client_secrets.json`).
+2. Move the secret file to `/secrets` folder.
+3. Login to your Google Drive Account
+4. Go to the folder you want to save the output to
+3. Get the GDrive Folder ID by follow the image below
+
+![alt text](docs/gdrive_folder_id.png)
+
+### Running scripts
+
 For Linux, run
 ```bash
 # Skip this step if you do not want to upload to GGDrive
@@ -70,8 +82,3 @@ set GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
 # Run your own file by changing the path after -f
 python scripts/run.py -f assets/ocr-test.pdf
 ```
-
-## Get Google Drive Folder ID
-
-
-## Get Google Drive account secret json file
