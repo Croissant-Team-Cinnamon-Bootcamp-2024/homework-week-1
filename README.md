@@ -71,14 +71,14 @@ For Linux, run
 ```bash
 # Skip this step if you do not want to upload to GGDrive
 export GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
-# Run your own file by changing the path after -f
-python scripts/run.py -f assets/ocr-test.pdf
+# Run your own file by changing the path after -f with default secret key, ocr result output in "/secrets" and "/results", respectively.
+python scripts/run.py -f assets/ocr-test.pdf --secrets-dir /secrets --result-dir /results
 ```
 
 For Windows, run
 ```bash
 # Skip this step if you do not want to upload to GGDrive
 set GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
-# Run your own file by changing the path after -f
-python scripts/run.py -f assets/ocr-test.pdf
+# Run your own file by changing the path after -f with default secret key, ocr result output in "/secrets" and "/results", respectively.
+python scripts/run.py -f assets/ocr-test.pdf --secrets-dir /secrets --result-dir /results
 ```
