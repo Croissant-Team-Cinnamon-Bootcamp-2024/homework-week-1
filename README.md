@@ -43,14 +43,21 @@ cd homework-week-1
 
 For Linux, run
 ```
-sudo apt-get install tesseract-ocr
-pip install .
+sudo apt-get install tesseract-ocr libreoffice
+pip install -U .
+```
+
+For MacOS, run
+```
+brew install tesseract libreoffice
+pip install -U .
 ```
 
 For Windows, follow the below steps
 - Download Tesseract installer for Windows: https://github.com/UB-Mannheim/tesseract/wiki
 - Add the path to the directory of Tesseract folder (normally is: ```C:\Program Files\Tesseract-OCR```) to the System Environment Variables (edit the Path variable, click on **New** button and paste the path above).
-- Run ```pip install .```
+- Run ```pip install -U .```
+- Microsoft Word is expected to be installed on the Window's OS system
 
 
 ## Run OCR script
@@ -58,27 +65,28 @@ For Windows, follow the below steps
 ### Get Google Drive Secret file & Folder ID
 
 1. Follow [this instruction](https://pythonhosted.org/PyDrive/quickstart.html) to get Google Drive Secret file (rename to `client_secrets.json`).
-2. Move the secret file to `/secrets` folder.
-3. Login to your Google Drive Account
-4. Go to the folder you want to save the output to
-3. Get the GDrive Folder ID by follow the image below
+2. Create new `secrets/` folder.
+3. Move the secret file to `secrets/` folder.
+4. Login to your Google Drive Account
+5. Go to the folder you want to save the output to
+6. Get the GDrive Folder ID by follow the image below
 
 ![alt text](docs/gdrive_folder_id.png)
 
 ### Running scripts
 
-For Linux, run
+For Linux and MacOS, run
 ```bash
 # Skip this step if you do not want to upload to GGDrive
 export GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
-# Run your own file by changing the path after -f
-python scripts/run.py -f assets/ocr-test.pdf
+# Run your own file by changing the path after -f with default secret key, ocr result output in "/secrets" and "/results", respectively.
+python scripts/run.py -f assets/ocr-test.pdf --secrets-dir secrets/ --results-dir results/
 ```
 
 For Windows, run
-```bash
+```pwsh
 # Skip this step if you do not want to upload to GGDrive
 set GGDRIVE_FOLDER_ID=<Google Drive Folder ID>
-# Run your own file by changing the path after -f
-python scripts/run.py -f assets/ocr-test.pdf
+# Run your own file by changing the path after -f with default secret key, ocr result output in "/secrets" and "/results", respectively.
+python scripts/run.py -f assets/ocr-test.pdf --secrets-dir secrets/ --results-dir results/
 ```

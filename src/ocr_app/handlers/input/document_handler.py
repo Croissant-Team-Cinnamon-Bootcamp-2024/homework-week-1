@@ -25,6 +25,8 @@ class DocumentHandler(PdfHandler):
             return self.convert_using_word(input_filepath)
         elif platform.system() == 'Linux':
             return self.convert_using_libreoffice(input_filepath)
+        elif platform.system() == 'Darwin':
+            return self.convert_using_soffice(input_filepath)
         else:
             print(f"Unsupported operating system: {platform.system()}")
             return None
@@ -60,6 +62,33 @@ class DocumentHandler(PdfHandler):
 
             command = [
                 'libreoffice',
+                '--headless',
+                '--convert-to',
+                'pdf',
+                doc_path,
+                '--outdir',
+                temp_dir,
+            ]
+            subprocess.run(
+                command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True
+            )
+
+            print(f"Converted {docx_filepath} to {pdf_path} successfully.")
+            return pdf_path
+        except subprocess.CalledProcessError as e:
+            print(f"Error converting {docx_filepath} to PDF: {e.stderr.decode()}")
+            return None
+
+    def convert_using_soffice(self, docx_filepath: str) -> str:
+        try:
+            doc_path = os.path.abspath(docx_filepath)
+            temp_dir = '/tmp'
+            pdf_path = os.path.join(
+                temp_dir, f"{os.path.splitext(os.path.basename(doc_path))[0]}.pdf"
+            )
+
+            command = [
+                'soffice',
                 '--headless',
                 '--convert-to',
                 'pdf',

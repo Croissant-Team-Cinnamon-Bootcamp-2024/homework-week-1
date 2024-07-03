@@ -5,6 +5,8 @@ from .ocr_output import OcrResults
 
 
 class JsonProcessor:
+    """Converts OCR results to a JSON file for storage or further processing."""
+
     @staticmethod
     def process(
         input: OcrResults,

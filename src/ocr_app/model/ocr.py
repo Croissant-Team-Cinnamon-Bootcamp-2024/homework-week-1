@@ -9,6 +9,10 @@ from .data_preprocess import DataPreprocess
 
 
 class OCR:
+    """
+    OCR class to process images and extract text using Tesseract OCR.
+    """
+
     def __init__(self):
         pass
 
@@ -55,12 +59,22 @@ class OCR:
         return text_lines
 
     def read_text(self, data: OcrImages) -> OcrResults:
+        """
+        Reads text from a list of images using OCR and returns structured results.
+
+        Args:
+            data (OcrImages): An OcrImages object containing a list of images to process with OCR.
+
+        Returns:
+            OcrResults: An object containing the original images and the corresponding OCR results.
+        """
         list_ocr_output = []
         for datum in data.image_list:
             processor = DataPreprocess()
-            threshold, scaling_factor = processor.preprocess(datum)
-            output = self._extract_text_lines(threshold, scaling_factor)
-            list_ocr_output.append(output)
-
-        print("Run OCR successfully!")
+            try:
+                threshold, scaling_factor = processor.preprocess(datum)
+                output = self._extract_text_lines(threshold, scaling_factor)
+                list_ocr_output.append(output)
+            except Exception as e:
+                raise Exception(f"Failed to process image for OCR: {e}")
         return OcrResults(data.image_list, list_ocr_output)

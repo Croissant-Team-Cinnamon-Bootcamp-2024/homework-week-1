@@ -11,8 +11,8 @@ class BaseHandler(ABC):
 
     @abstractmethod
     def process(self, filepath: str) -> OcrImages:
-        pass
+        """Process the given file path and return OCR image data."""
 
     @abstractmethod
     def can_handle(self, filepath: str) -> bool:
-        pass
+        """Check if the handler can process the given file path."""

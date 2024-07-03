@@ -11,12 +11,33 @@ DEFAULT_SAVE_DIR = "results"
 
 
 class OutputImageProcessor:
+    """
+    Processes OCR output and generates a PDF document with the recognized images.
+
+    This class takes the output from an OCR process, which includes images stored as numpy arrays,
+    and compiles them into a single PDF document. Each page of the PDF corresponds to one image.
+    """
+
     @staticmethod
     def create_pdf_from_numpy_images(
         input: OcrResults,
         output_dir: str = DEFAULT_SAVE_DIR,
         output_filename: str = 'detect_images.pdf',
     ):
+        """
+        Create a PDF file from a list of images represented as numpy arrays.
+
+        The method reads a list of numpy arrays from the OCR results, converts each array to a PIL Image,
+        and adds each image as a separate page in a PDF file stored in the specified output directory.
+
+        Args:
+            input (OcrResults): The OCR results containing the images as numpy arrays.
+            output_dir (str): The directory to save the output PDF file. Defaults to 'results'.
+            output_filename (str): The name of the output PDF file. Defaults to 'detect_images.pdf'.
+
+        Raises:
+            OSError: If the directory cannot be created.
+        """
         image_list = input.images
 
         if not os.path.exists(output_dir):
